@@ -12,6 +12,42 @@
 
         <article class="content px-4">
             @Body
+
+@*            <ErrorBoundary @ref="errorBoundaryComponent">
+                <ErrorContent Context="exception">
+
+                    <HxAlert Color="ThemeColor.Warning">
+                        
+                        <h5>Oops, someting went wrong</h5>
+                        <HxButton OnClick="() => errorBoundaryComponent?.Recover()" Color="ThemeColor.Success" Size="ButtonSize.Small">Recover</HxButton>
+
+                        <HxAccordion CssClass="my-2">
+                            <HxAccordionItem>
+                                <HeaderTemplate>
+                                    @exception.GetType().Name: @exception.Message
+                                </HeaderTemplate>
+                                <BodyTemplate>
+                                    <code>
+                                        <pre>
+                                           @exception.ToString()
+                                        </pre>
+                                    </code>
+                                </BodyTemplate>
+                            </HxAccordionItem>
+                        </HxAccordion>
+                    </HxAlert>
+
+                </ErrorContent>
+                <ChildContent>
+                    @Body
+                </ChildContent>
+            </ErrorBoundary>
+*@
         </article>
     </main>
 </div>
+
+@code {
+    private ErrorBoundary? errorBoundaryComponent;
+}
+

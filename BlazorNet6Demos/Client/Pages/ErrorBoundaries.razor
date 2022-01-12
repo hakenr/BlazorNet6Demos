@@ -1,0 +1,165 @@
+﻿@page "/error-boundaries"
+
+<h1>Error boundaries</h1>
+
+
+
+
+
+<h3 class="mt-5">Basic usage</h3>
+
+<ErrorBoundary>
+    <SurveyPrompt UnknownParameter="Some value" />
+</ErrorBoundary>
+
+
+
+
+
+
+<h3 class="mt-5">Common usage (iterations)</h3>
+
+<div class="row">
+    <HxRepeater Data="Enum.GetValues<ThemeColor>()">
+        <ItemTemplate Context="color">
+            <div class="col">
+                <ErrorBoundary>
+                    <HxAlert Color="color">@color</HxAlert>
+                </ErrorBoundary>
+            </div>
+        </ItemTemplate>
+    </HxRepeater>
+</div>
+
+
+
+
+
+<h3 class="mt-5">Default ErrorContent</h3>
+
+<ErrorBoundary>
+    <ErrorContent Context="exception">
+        <div class="blazor-error-boundary" />
+    </ErrorContent>
+    <ChildContent>
+        <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+    </ChildContent>
+</ErrorBoundary>
+
+
+
+
+
+<h3 class="mt-5">Custom ErrorContent</h3>
+
+<ErrorBoundary>
+    <ErrorContent>
+        <div class="bg-danger text-white my-2 p-2">
+            Bad things happen
+        </div>
+    </ErrorContent>
+    <ChildContent>
+        <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+    </ChildContent>
+</ErrorBoundary>
+
+
+
+
+
+<h3 class="mt-5">Custom ErrorContent with Exception details</h3>
+<ErrorBoundary>
+    <ErrorContent Context="exception">
+
+        <HxAlert Color="ThemeColor.Warning">
+            <h5>Oops, someting went wrong</h5>
+            <HxAccordion CssClass="my-2">
+                <HxAccordionItem>
+                    <HeaderTemplate>
+                        @exception.GetType().Name: @exception.Message
+                    </HeaderTemplate>
+                    <BodyTemplate>
+                        <code>
+                            <pre>
+                                @exception.ToString()
+                        </pre>
+                        </code>
+                    </BodyTemplate>
+                </HxAccordionItem>
+            </HxAccordion>
+        </HxAlert>
+
+    </ErrorContent>
+    <ChildContent>
+        <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+    </ChildContent>
+</ErrorBoundary>
+
+
+
+
+
+<h3 class="mt-5">Recover from error</h3>
+
+<ErrorBoundary @ref="errorBoundaryComponent">
+    <ErrorContent>
+        <HxAlert Color="ThemeColor.Danger">
+            <p>Bad things happen.</p>
+            <HxButton OnClick="() => errorBoundaryComponent?.Recover()" Color="ThemeColor.Success" Size="ButtonSize.Small">Recover</HxButton>
+        </HxAlert>
+    </ErrorContent>
+    <ChildContent>
+        <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+    </ChildContent>
+</ErrorBoundary>
+@code {
+    private ErrorBoundary? errorBoundaryComponent;
+}
+
+
+
+
+
+<h3 class="mt-5">Nesting</h3>
+
+<ErrorBoundary>
+    <ErrorContent>
+        <HxAlert Color="ThemeColor.Danger">
+            Outer boundary error
+        </HxAlert>>
+    </ErrorContent>
+    <ChildContent>
+
+        <ErrorBoundary>
+            <ErrorContent>
+                <HxAlert Color="ThemeColor.Danger">
+                    Inner boundary error
+                </HxAlert>
+            </ErrorContent>
+            <ChildContent>
+                <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+            </ChildContent>
+        </ErrorBoundary>
+
+    </ChildContent>
+</ErrorBoundary>
+
+
+
+
+
+<h3 class="mt-5">Caveats</h3>
+
+<ErrorBoundary>
+    <ChildContent>
+        <button @onclick="() => throw new Exception()" class="btn btn-danger">Throw exception</button>
+    </ChildContent>
+</ErrorBoundary>
+
+
+
+
+
+<h3 class="mt-5">"Global" error handling</h3>
+
+<p>See <code>MainLayout.razor</code>.</p>
