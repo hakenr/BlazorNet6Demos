@@ -1,0 +1,12 @@
+﻿@page "/head/page-title-dynamic"
+
+<PageTitle>@counter | Demo</PageTitle>
+
+Current count: @counter
+
+<HxButton Text="counter++" OnClick="() => counter++" Color="ThemeColor.Primary" />
+
+@code
+{
+    private int counter;
+}
