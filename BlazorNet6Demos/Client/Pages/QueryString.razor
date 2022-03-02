@@ -1,0 +1,36 @@
+﻿@page "/query-string"
+@inject NavigationManager NavigationManager
+
+<HxInputText Label="Id" @bind-Value="Id" />
+
+<div class="mt-2">
+    <HxButton Text="NavigateTo(?id=15)" OnClick="HandleNavigate15Click" Color="ThemeColor.Primary" />
+    <HxButton Text="NavigateTo(input-value)" OnClick="HandleNavigateInputClick" Color="ThemeColor.Primary" />
+    <HxButton Text="NavigateTo(multiple)" OnClick="HandleNavigateMultipleClick" Color="ThemeColor.Primary" />
+</div>
+
+
+@code
+{
+    [SupplyParameterFromQuery]
+    [Parameter] public string? Id { get; set; }
+
+    private void HandleNavigate15Click()
+    {
+        NavigationManager.NavigateTo("/query-string?id=15");
+    }
+
+    private void HandleNavigateInputClick()
+    {
+        NavigationManager.NavigateTo(NavigationManager.GetUriWithQueryParameter("id", Id));
+    }
+
+    private void HandleNavigateMultipleClick()
+    {
+        NavigationManager.NavigateTo(NavigationManager.GetUriWithQueryParameters(new Dictionary<string, object?>()
+            {
+                ["id"] = null, // remove, if present
+                ["other"] = "somevalue"
+            }));
+    }
+}
