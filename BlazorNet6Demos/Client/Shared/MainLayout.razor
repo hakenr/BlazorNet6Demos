@@ -6,9 +6,9 @@
 	<Sidebar />
 
 	<div class="main p-4 flex-grow-1 overflow-hidden">
-		@Body
-@*
-        <ErrorBoundary @ref="errorBoundaryComponent">
+        @Body
+
+@*        <ErrorBoundary @ref="errorBoundaryComponent">
             <ErrorContent Context="exception">
 
                 <HxAlert Color="ThemeColor.Warning">
@@ -41,3 +41,8 @@
 	</div>
 
 </div>
+
+@code
+{
+    private ErrorBoundary errorBoundaryComponent;
+}
