@@ -1,0 +1,15 @@
+﻿@page "/error-boundaries/error-content-custom"
+
+<h3>Custom ErrorContent</h3>
+
+<ErrorBoundary>
+    <ErrorContent>
+        <div class="bg-danger text-white my-2 p-2">
+            <HxIcon Icon="BootstrapIcon.BugFill" />
+            Bad things happen
+        </div>
+    </ErrorContent>
+    <ChildContent>
+        <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+    </ChildContent>
+</ErrorBoundary>

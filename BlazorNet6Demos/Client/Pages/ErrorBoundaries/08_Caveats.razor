@@ -1,0 +1,9 @@
+﻿@page "/error-boundaries/caveats"
+
+<h3>Caveats</h3>
+
+<ErrorBoundary>
+    <ChildContent>
+        <button @onclick="() => throw new Exception()" class="btn btn-danger">Throw exception</button>
+    </ChildContent>
+</ErrorBoundary>

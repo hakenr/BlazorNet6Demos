@@ -1,0 +1,16 @@
+﻿@page "/error-boundaries/basic-usage"
+
+<h3>Basic usage</h3>
+
+
+<ErrorBoundary>
+        <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+</ErrorBoundary>
+
+
+<div class="my-3"></div>
+
+
+<ErrorBoundary>
+    <SurveyPrompt UnknownParameter="Some value" />
+</ErrorBoundary>

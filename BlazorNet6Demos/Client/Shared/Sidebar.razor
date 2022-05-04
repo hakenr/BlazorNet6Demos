@@ -1,10 +1,25 @@
 ﻿<HxSidebar>
     <HeaderTemplate>
-        <HxSidebarBrand BrandName="BlazorNet6Demos" />
+        <HxSidebarBrand BrandName="BlazorNet6Demos">
+            <Logo>
+                <img src="blazor.svg" width="35" />
+            </Logo>
+        </HxSidebarBrand>
     </HeaderTemplate>
     <ItemsTemplate>
         <HxSidebarItem Icon="BootstrapIcon.House" Href="/" Match="NavLinkMatch.All" Text="Home" />
-        <HxSidebarItem Icon="BootstrapIcon.Bug" Href="/error-boundaries" Text="Error boundaries" />
+        <HxSidebarItem Icon="BootstrapIcon.Bug" Text="Error boundaries">
+            <HxSidebarItem Href="/error-boundaries/basic-usage" Text="Basic usage" />
+            <HxSidebarItem Href="/error-boundaries/common-usage-iterations" Text="Common usage - iterations" />
+            <HxSidebarItem Href="/error-boundaries/error-content-default" Text="ErrorContent - default" />
+            <HxSidebarItem Href="/error-boundaries/error-content-custom" Text="ErrorContent - custom" Match="NavLinkMatch.All" />
+            <HxSidebarItem Href="/error-boundaries/error-content-custom-details" Text="ErrorContent - custom with details" />
+            <HxSidebarItem Href="/error-boundaries/recover" Text="Recover from error" />
+            <HxSidebarItem Href="/error-boundaries/nesting" Text="Nesting" />
+            <HxSidebarItem Href="/error-boundaries/caveats" Text="Caveats" />
+            <HxSidebarItem Href="/error-boundaries/global-error-handling" Text="Global error handling" />
+            <HxSidebarItem Href="/error-boundaries/custom-errorboundary-component" Text="Custom ErrorBoundary component" />
+        </HxSidebarItem>
         <HxSidebarItem Text="Head" Icon="BootstrapIcon.Headphones">
             <HxSidebarItem Href="/head/page-title-basic" Text="PageTitle" />
             <HxSidebarItem Href="/head/page-title-dynamic" Text="PageTitle - dynamic" />

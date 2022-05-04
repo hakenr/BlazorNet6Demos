@@ -1,0 +1,11 @@
+﻿@page "/error-boundaries/common-usage-iterations"
+
+<h3>Common usage (iterations)</h3>
+
+<HxRepeater Data="Enum.GetValues<ThemeColor>()">
+    <ItemTemplate Context="color">
+        <ErrorBoundary>
+            <HxAlert Color="color">@color</HxAlert>
+        </ErrorBoundary>
+    </ItemTemplate>
+</HxRepeater>

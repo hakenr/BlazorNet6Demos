@@ -1,0 +1,12 @@
+﻿@page "/error-boundaries/global-error-handling"
+
+
+<h3>"Global" error handling</h3>
+
+<p>See <code>MainLayout.razor</code>.</p>
+
+<ErrorBoundary>
+    <ChildContent>
+        <button @onclick="() => throw new Exception()" class="btn btn-danger">Throw exception</button>
+    </ChildContent>
+</ErrorBoundary>

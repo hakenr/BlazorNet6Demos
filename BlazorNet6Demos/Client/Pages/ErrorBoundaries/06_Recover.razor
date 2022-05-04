@@ -1,0 +1,24 @@
+﻿@page "/error-boundaries/recover"
+
+<h3>Recover from error</h3>
+
+<ErrorBoundary @ref="errorBoundaryComponent">
+    <ErrorContent>
+        <HxAlert Color="ThemeColor.Danger">
+            <p>Bad things happen.</p>
+            <HxButton OnClick="HandleRecoverClick" Color="ThemeColor.Success" Size="ButtonSize.Small">Recover</HxButton>
+        </HxAlert>
+    </ErrorContent>
+    <ChildContent>
+        <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+    </ChildContent>
+</ErrorBoundary>
+
+@code {
+    private ErrorBoundary? errorBoundaryComponent;
+
+    private void HandleRecoverClick()
+    {
+        errorBoundaryComponent?.Recover();
+    }
+}

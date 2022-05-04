@@ -1,0 +1,30 @@
+﻿@page "/error-boundaries/error-content-custom-details"
+
+<h3>Custom ErrorContent with Exception details</h3>
+
+<ErrorBoundary>
+    <ErrorContent Context="exception">
+
+        <HxAlert Color="ThemeColor.Warning">
+            <h5>Oops, someting went wrong</h5>
+            <HxAccordion CssClass="my-2">
+                <HxAccordionItem>
+                    <HeaderTemplate>
+                        @exception.GetType().Name: @exception.Message
+                    </HeaderTemplate>
+                    <BodyTemplate>
+                        <code>
+                            <pre>
+                                @exception.ToString()
+                            </pre>
+                        </code>
+                    </BodyTemplate>
+                </HxAccordionItem>
+            </HxAccordion>
+        </HxAlert>
+
+    </ErrorContent>
+    <ChildContent>
+        <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+    </ChildContent>
+</ErrorBoundary>

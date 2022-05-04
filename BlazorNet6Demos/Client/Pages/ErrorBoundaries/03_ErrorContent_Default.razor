@@ -1,0 +1,12 @@
+﻿@page "/error-boundaries/error-content-default"
+
+<h3>Default ErrorContent</h3>
+
+<ErrorBoundary>
+    <ErrorContent Context="exception">
+        <div class="blazor-error-boundary" />@* See app.css *@
+    </ErrorContent>
+    <ChildContent>
+        <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+    </ChildContent>
+</ErrorBoundary>

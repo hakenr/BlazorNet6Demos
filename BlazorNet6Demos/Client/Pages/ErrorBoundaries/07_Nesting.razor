@@ -1,0 +1,25 @@
+﻿@page "/error-boundaries/nesting"
+
+<h3>Nesting</h3>
+
+<ErrorBoundary>
+    <ErrorContent>
+        <HxAlert Color="ThemeColor.Danger">
+            OUTER boundary error
+        </HxAlert>>
+    </ErrorContent>
+    <ChildContent>
+
+        <ErrorBoundary>
+            <ErrorContent>
+                <HxAlert Color="ThemeColor.Danger">
+                    INNER boundary error
+                </HxAlert>
+            </ErrorContent>
+            <ChildContent>
+                <HxButton OnClick="() => throw new Exception()" Color="ThemeColor.Primary">Throw exception</HxButton>
+            </ChildContent>
+        </ErrorBoundary>
+
+    </ChildContent>
+</ErrorBoundary>
