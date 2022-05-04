@@ -1,0 +1,10 @@
+﻿<HxInputText Label="Id (subcomponent)" @bind-Value="Id" />
+
+@code
+{
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? Id { get; set; } 
+
+     // nop, routable components only (https://github.com/dotnet/aspnetcore/issues/36966)
+}

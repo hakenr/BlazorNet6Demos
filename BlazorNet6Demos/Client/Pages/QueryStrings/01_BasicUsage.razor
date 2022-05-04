@@ -1,4 +1,4 @@
-﻿@page "/query-string"
+﻿@page "/query-strings/basic-usage"
 @inject NavigationManager NavigationManager
 
 <HxInputText Label="Id" @bind-Value="Id" />
@@ -12,12 +12,13 @@
 
 @code
 {
+    [Parameter]
     [SupplyParameterFromQuery]
-    [Parameter] public string? Id { get; set; }
+    public string? Id { get; set; }
 
     private void HandleNavigate15Click()
     {
-        NavigationManager.NavigateTo("/query-string?id=15");
+        NavigationManager.NavigateTo("/query-strings/basic-usage?id=15");
     }
 
     private void HandleNavigateInputClick()

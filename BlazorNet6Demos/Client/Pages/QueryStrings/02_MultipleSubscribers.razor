@@ -1,0 +1,17 @@
+﻿@page "/query-strings/multiple-subscribers"
+@inject NavigationManager NavigationManager
+
+<HxInputText Label="Id" @bind-Value="Id" CssClass="mb-2" />
+<HxInputText Label="SecondaryId" @bind-Value="SecondaryId" CssClass="mb-2" />
+<QueryStringSubscribedComponent />
+
+@code
+{
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? Id { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "something")] // try "id"
+    public string? SecondaryId { get; set; }
+}
